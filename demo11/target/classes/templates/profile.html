@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+  <meta charset="UTF-8">
+  <title>Личный профиль</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    .container {
+      width: 80%;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      color: #333;
+    }
+    .button-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .back-button {
+      padding: 10px 20px;
+      background-color: #c11;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin: 5px;
+    }
+    .back-button:hover {
+      background-color: #a00;
+    }
+    .logout-button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin: 5px;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    .logout-button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h2>Личный профиль</h2>
+  <img src="path/to/profile-picture.jpg" alt="Profile Picture">
+  <div class="profile-info">
+    <p>Имя пользователя: <span th:text="${user.getUsername()}"></span></p>
+    <p>ФИО: <span th:text="${user.getFullName()}"></span></p>
+    <p>Email: <span th:text="${user.getEmail()}"></span></p>
+    <p>Номер телефона: <span th:text="${user.getPhoneNumber()}"></span></p>
+  </div>
+  <div class="button-container">
+    <a href="javascript:history.back()" class="back-button">Назад</a>
+    <form method="post" th:action="@{/logout}">
+      <input type="submit" value="Выйти" class="logout-button">
+    </form>
+  </div>
+</div>
+</body>
+</html>

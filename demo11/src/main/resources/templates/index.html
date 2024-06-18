@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+  <meta charset="UTF-8">
+  <title>Main page</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    .container {
+      width: 80%;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .admin-block {
+      background-color: #f9f2f4;
+      border-left: 5px solid #c11;
+      padding: 10px;
+    }
+    .user-block {
+      background-color: #e7f4e4;
+      border-left: 5px solid #4c1;
+      padding: 10px;
+    }
+    h2 {
+      color: #333;
+    }
+    .button-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+    input[type="submit"], .profile-button {
+      padding: 10px 20px;
+      background-color: #c11;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin: 5px;
+    }
+    input[type="submit"]:hover, .profile-button:hover {
+      background-color: #a00;
+    }
+  </style>
+</head>
+<body>
+<div sec:authorize="hasRole('ADMIN')" class="container admin-block">
+  <h2>Добро пожаловать администратор</h2>
+</div>
+<div sec:authorize="hasRole('USER')" class="container user-block">
+  <h2>Добро пожаловать пользователь</h2>
+</div>
+<div class="container">
+  <div class="button-container">
+    <form method="post" th:action="@{/logout}">
+      <input type="submit" value="Выйти">
+    </form>
+    <a href="/profile" class="profile-button">Личный профиль</a>
+  </div>
+</div>
+</body>
+</html>
